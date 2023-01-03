@@ -27,6 +27,7 @@ __author__ = ("Florent Thiery <fthiery@gmail.com>", "Dirk Van Haerenborgh <vhdir
 import os
 import time
 import gi
+import re
 gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
 gi.require_version('Gtk', '3.0')
@@ -599,7 +600,10 @@ class GtkGstController(object):
         if parent_name:
             children = self.properties_container.get_children()
             for child in children:
-                if child.get_label() == parent_name:
+                # label is formatted. extract the element name
+                m = re.match("<.*>(.*)</.*>", child.get_label())
+                child_name = m.group(1)
+                if child_name == parent_name:
                     child.get_child().add(widget)
         else:
             self.properties_container.pack_start(widget, False, False, 5)

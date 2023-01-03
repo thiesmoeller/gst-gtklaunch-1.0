@@ -3,7 +3,10 @@
 # Copyright 2015, Florent Thiery
 
 def get_hms_string_from_seconds(seconds):
-    text = "%02d:%02d:%02d" % get_hms_tuple_from_seconds(seconds)
+    if seconds == 'infinite':
+        text = "infinite"
+    else:
+        text = "%02d:%02d:%02d" % get_hms_tuple_from_seconds(seconds)
     return text
 
 def get_hms_tuple_from_seconds(seconds):

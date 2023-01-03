@@ -48,7 +48,7 @@ class Property(object):
         self.description = property.blurb
         self.default_value = property.default_value
         self.name = property.name
-        self.human_name = property.nick
+        self.human_name = property.name
         self.value_type = property.value_type
         self.is_readonly = not property.flags & GObject.PARAM_WRITABLE
         self.update_value()
